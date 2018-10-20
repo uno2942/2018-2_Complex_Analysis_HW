@@ -10,6 +10,8 @@
 \usepackage{mathrsfs}
 \usepackage{mathtools}
 \usepackage{physics}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
 
 \textwidth 6.5 truein 
 \oddsidemargin 0 truein 
@@ -51,6 +53,102 @@
 \maketitle
 
 \section*{Problem 1}
+Let's separate each term in the integral and calculate. I'll use the \ref{Fig:P1} as a contour in the integral. 
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[decoration={markings,
+mark=at position 1cm with {\arrow[line width=1pt]{>}},
+mark=at position 3cm with {\arrow[line width=1pt]{>}},
+mark=at position 5cm with {\arrow[line width=1pt]{>}},
+mark=at position 9cm with {\arrow[line width=1pt]{>}}
+}
+]
+% The axes
+\draw[help lines,->] (-3,0) -- (3,0) coordinate (xaxis);
+\draw[help lines,->] (0,-1) -- (0,3) coordinate (yaxis);
 
+% The path
+\path[draw,line width=0.8pt,postaction=decorate] (-2,0) node[below] {$-R$} -- (2,0) node[below] {$R$} arc (0:180:2) ;
 
+% The labels
+\node[below] at (xaxis) {$x$};
+\node[left] at (yaxis) {$y$};
+\node[below left] {$O$};
+\node at (1.5,1.8) {$C_{R}$};
+\node at (0.1, 1) {x  i};
+\end{tikzpicture}
+\caption{asdf}
+\label{Fig:P1}
+\end{figure}
+By Contour integral,
+\begin{equation*}
+\int_{-R}^R\frac{e^{ix}}{x^2+1}dx+\int_{C_R} \frac{e^{iz}}{z^2+1}dz=2\pi i \Res_{z=i} \left(\frac{e^{iz}}{z^2+1}\right)=\pi e^{-1}
+\end{equation*}
+where $x$ is real valued variable. By the same way,
+\begin{equation*}
+\int_{-R}^R \frac{xe^{ix}}{x^2+1}dx+\int_{C_R} \frac{ze^{iz}}{z^2+1}dz=2\pi i \Res_{z=i} \left(\frac{ze^{iz}}{z^2+1}\right)=i\pi e^{-1}.
+\end{equation*}
+We know that
+\begin{equation*}
+\begin{split}
+\text{Re}\int_{-R}^R\frac{e^{ix}}{x^2+1}dx&=\int_{-R}^R\text{Re}\frac{e^{ix}}{x^2+1}dx=\int_{-R}^R\frac{\cos(x)}{x^2+1}dx ~\text{ and } \\
+\text{Im}\int_{-R}^R\frac{xe^{ix}}{x^2+1}dx&=\int_{-R}^R\text{Im}\frac{xe^{ix}}{x^2+1}dx=\int_{-R}^R\frac{x\sin(x)}{x^2+1}dx.
+\end{split}
+\end{equation*}
+Therefore, if each term converges as $R\rightarrow \infty$, we can get the desired result.
+
+Consider remained term in each integral:
+\begin{equation*}
+\begin{split}
+\lim\limits_{R\rightarrow \infty}\abs{\int_{C_R} \frac{e^{iz}}{z^2+1}dz}&=\abs{\int_0^\pi \frac{e^{iRe^{i\theta}}}{(R^2e^{i2\theta}+1)}Rie^{i\theta}d\theta}\leq \lim\limits_{R\rightarrow \infty} \int_0^\pi R\abs{\frac{e^{iRe^{i\theta}}}{(R^2e^{i2\theta}+1)}}d\theta \\
+&\leq\lim\limits_{R\rightarrow \infty} \int_0^\pi R\abs{\frac{e^{-R\sin\theta}}{(R^2-1)}}d\theta\leq \lim\limits_{R\rightarrow \infty} \int_0^\pi R\abs{\frac{\pi/R}{(R^2-1)}}d\theta \text{ (Using Jordan's inequality)} \\
+&=0.
+\end{split}
+\end{equation*}
+By the same reason, $\lim\limits_{R\rightarrow \infty}\abs{\int_{C_R} \frac{ze^{iz}}{z^2+1}dz}=0$ since $z$ produce a $R$ term, making $\lim\limits_{R\rightarrow \infty}\abs{\int_{C_R} \frac{ze^{iz}}{z^2+1}dz}\leq \lim\limits_{R\rightarrow \infty}\abs{\int_0^\pi \frac{\pi R}{R^2-1}}d\theta=0$.
+
+Therefore,
+\begin{equation*}
+\text{p.v.}\int_{-\infty}^\infty\frac{\cos(x)+x\sin(x)}{x^2+1}dx=\frac{2\pi}{e}
+\end{equation*}
+
+\section*{Problem 2}
+I'll use the \ref{Fig:P2} as a contour in the integral.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[decoration={markings,
+mark=at position 1cm with {\arrow[line width=1pt]{>}}
+}
+]
+% The axes
+\draw[help lines,->] (-3,0) -- (3,0) coordinate (xaxis);
+\draw[help lines,->] (0,-1) -- (0,3) coordinate (yaxis);
+
+% The path
+\path[draw,line width=0.8pt,postaction=decorate] (2,0) node[below] {$~~~~~~~~R=1$} arc (0:360:2) ;
+
+% The labels
+\node[below] at (xaxis) {$x$};
+\node[left] at (yaxis) {$y$};
+\node[below left] {$O$};
+\node at (1.5,1.8) {$C$};
+\node at (1, 1) {x  $\alpha$};
+\node at (2.3, 2.3) {x  $\beta$};
+\end{tikzpicture}
+\caption{The contour used in Problem 2. x represent poles and $\alpha$ and $\beta$ is some root of polynomial in the denominator.}
+\label{Fig:P2}
+\end{figure}
+Recognizing $\sin\theta$ as $\frac{e^{i\theta}-e^{-i\theta}}{2i}$, we can rewrite the integral by
+\begin{equation*}
+\begin{split}
+\int_0^{2\pi} \frac{1}{(1+2a\sin\theta+a^2)^2}d\theta&=\int_0^{2\pi} \frac{1}{\left(1+2a\left(\frac{e^{i\theta}-e^{-i\theta}}{2i}\right)+a^2\right)^2}d\theta\\
+&=-\frac{1}{a^2i}\int_{C} \frac{z}{\left(z^2+\frac{i}{a}(1+a^2)z-1\right)^2}dz
+\end{split}
+\end{equation*}
+where $z=e^{i\theta}$. Since $z^2+\frac{i}{a}(1+a^2)z-1=0$ has roots at $-i/a$ and $-ai$ and the $C$ is $S^1$ in $\mathbb{C}$, only $-ai$ is inside $C$. Therefore, 
+\begin{equation*}
+\int_{C} \frac{z}{\left(z^2+\frac{i}{a}(1+a^2)z-1\right)^2}dz=2\pi i\Res_{z=-ai}\frac{z}{\left(z^2+\frac{i}{a}(1+a^2)z-1\right)^2}=2\pi i\left(\frac{z}{(z+i/a)^2}\right)'\Bigg{|}_{z=-ia}=-\frac{2\pi i}{a^2}\frac{a^2+1}{(-a^2+1)^3}
+\end{equation*}
+Therefore, $\int_0^{2\pi} \frac{1}{(1+2a\sin\theta+a^2)^2}d\theta=\frac{2\pi(a^2+1)}{(-a^2+1)^3}$
 \end{document}
