@@ -1,0 +1,152 @@
+\documentclass{article}
+\usepackage{graphicx, amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{kotex}
+\usepackage{bm}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\textwidth 6.5 truein 
+\oddsidemargin 0 truein 
+\evensidemargin -0.50 truein 
+\topmargin -.5 truein 
+\textheight 8.5in
+
+\DeclareMathOperator{\cc}{\mathbb{C}}
+\DeclareMathOperator{\rr}{\mathbb{R}}
+\DeclareMathOperator{\bA}{\mathbb{A}}
+\DeclareMathOperator{\fra}{\mathfrak{a}}
+\DeclareMathOperator{\frb}{\mathfrak{b}}
+\DeclareMathOperator{\frm}{\mathfrak{m}}
+\DeclareMathOperator{\frp}{\mathfrak{p}}
+\DeclareMathOperator{\slin}{\mathfrak{sl}}
+\DeclareMathOperator{\Lie}{\mathsf{Lie}}
+\DeclareMathOperator{\Alg}{\mathsf{Alg}}
+\DeclareMathOperator{\Spec}{\mathrm{Spec}}
+\DeclareMathOperator{\End}{\mathrm{End}}
+\DeclareMathOperator{\rad}{\mathrm{rad}}
+\newcommand*\Laplace{\mathop{}\!\mathbin\bigtriangleup}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Sch}{\mathbf{Sch}}
+\newcommand{\Ring}{\mathbf{Ring}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+\title{Complex Analysis - HW1}
+\author{SungBin Park, 20150462} 
+
+\maketitle
+\begin{enumerate}
+\item[1.] Consider $\prod_{i=2}^\infty \left(1+\frac{(-1)^i}{i}\right)$, then it converges since all the terms are nonzero, and
+\begin{equation*}
+\prod_{i=2}^N \left(1+\frac{(-1)^i}{i}\right)=\begin{cases}
+\frac{3}{2}\frac{2}{3}\cdots\frac{N+1}{N}\frac{N}{N+1}=1 & \text{For odd }N \\
+\frac{3}{2}\frac{2}{3}\cdots\frac{N+1}{N}=\frac{N+1}{N} & \text{For even }N \\
+\end{cases}
+\end{equation*}
+and both goes to $1$ as $N\rightarrow 0$.
+
+However, it does not converges absolutely since
+\begin{equation*}
+\prod_{i=2}^N \left(1+\frac{1}{i}\right)=\frac{3}{2}\frac{4}{3}\cdots\frac{N+1}{N}=\frac{N+1}{2}
+\end{equation*}
+and it goes to infinity as $N\rightarrow \infty$.
+\item[2.] I'll start from $n=2$. For even $N\geq 4$,
+\begin{equation*}
+\begin{split}
+0<\prod_{i=3}^N \left(1+\frac{(-1)^i}{\sqrt{i}}\right)&=\left(1-\frac{1}{\sqrt{3}}\right)\left(1+\frac{1}{\sqrt{4}}\right)\cdots \left(1-\frac{1}{\sqrt{N-1}}\right)\left(1+\frac{1}{\sqrt{N}}\right) \\
+&= \left(1+\frac{1}{\sqrt{4}}-\frac{1}{\sqrt{3}}-\frac{1}{\sqrt{12}}\right)\cdots\left(1+\frac{1}{\sqrt{N}}-\frac{1}{\sqrt{N-1}}-\frac{1}{\sqrt{N(N-1)}}\right) \\
+&\leq \left(1-\frac{1}{\sqrt{12}}\right)\cdots\left(1-\frac{1}{\sqrt{N(N-1)}}\right)\\
+&\leq \prod_{i=2}^{N/2} \left(1-\frac{1}{2i}\right)\leq \exp\left(\sum\limits_{i=2}^{N/2} -\frac{1}{2i}\right)\rightarrow 0
+\end{split}
+\end{equation*}
+as $N\rightarrow \infty$. For odd $N$, the partial product also goes to $0$ since 
+\begin{equation*}
+\prod_{i=3}^N \left(1+\frac{(-1)^i}{\sqrt{i}}\right) = \left(\prod_{i=3}^{N-1} \left(1+\frac{(-1)^i}{\sqrt{i}}\right)\right)\left(1-\frac{1}{\sqrt{N}}\right)\rightarrow 1\cdot 0 =0
+\end{equation*}
+as $N\rightarrow \infty$. Therefore, the product diverges to $0$. However, $\sum\limits_n \frac{(-1)^n}{\sqrt{n}}$ converges since it is alternating sequence such that the absolute value decreases and $\frac{(-1)^n}{\sqrt{n}}\rightarrow 0$ as $n\rightarrow \infty$.
+
+\item[3.] Let
+\begin{equation*}
+a_n=\begin{cases}
+\frac{-1}{\sqrt{n}} & \text{for even }n \\
+\frac{1}{\sqrt{n}}+\frac{1}{n} & \text{for odd}n.
+\end{cases}
+\end{equation*}
+For odd $N$, 
+\begin{equation*}
+\begin{split}
+1+\sum\limits_{i=1}^N a_i&=\left(\frac{1}{\sqrt{2}}+\frac{1}{2}\right)-\frac{1}{\sqrt{3}}+\cdots +\left(\frac{1}{\sqrt{N-1}}+\frac{1}{N-1}\right)-\frac{1}{\sqrt{N}} \\
+&\geq \left(\frac{1}{\sqrt{3}}+\frac{1}{2}\right)-\frac{1}{\sqrt{3}}+\cdots +\left(\frac{1}{\sqrt{N}}+\frac{1}{N-1}\right)-\frac{1}{\sqrt{N}} \\
+&=\sum\limits_{i=1}^{(N-1)/2} \frac{1}{2N}
+\end{split}
+\end{equation*}
+and RHS goes to infinity as $N\rightarrow \infty$. Therefore, $\sum\limits_n a_n$ diverges.
+
+Let $u_n=1+a_n$. Computing $\sum\limits_{i=2}^N u_n$ for odd $N$,
+\begin{equation*}
+\begin{split}
+\prod\limits_{i=2}^N u_n&=\left(1+\frac{1}{\sqrt{2}}+\frac{1}{2}\right)\left(1-\frac{1}{\sqrt{3}}\right)\cdots\left(1+\frac{1}{\sqrt{N-1}}+\frac{1}{N-1}\right)\left(1-\frac{1}{\sqrt{N}}\right) \\
+&=\left(1+\frac{1}{\sqrt{2}}-\frac{1}{\sqrt{3}}+\frac{1}{2}-\frac{1}{\sqrt{3}}\left(\frac{1}{\sqrt{2}}+\frac{1}{2}\right)\right)\cdots \left(1+\frac{1}{\sqrt{N-1}}-\frac{1}{\sqrt{N}}+\frac{1}{N-1}-\frac{1}{\sqrt{N}}\left(\frac{1}{\sqrt{N-1}}+\frac{1}{N-1}\right)\right)\\
+&=\prod_{i=1}^{(N-1)/2}\left(1+\frac{1}{2i}-\frac{1}{2i+1}+\frac{1}{2i}-\frac{1}{\sqrt{2i+1}}\left(\frac{1}{\sqrt{2i}}+\frac{1}{2i}\right)\right)
+.
+\end{split}
+\end{equation*}
+Also,
+\begin{equation*}
+\begin{split}
+\prod\limits_{n=2}^N &\abs{\frac{1}{\sqrt{n-1}}-\frac{1}{\sqrt{n}}+\frac{1}{n-1}-\frac{1}{\sqrt{n}}\left(\frac{1}{\sqrt{n-1}}+\frac{1}{n-1}\right)} \\
+&\leq \sum\limits_{n=2}^N \abs{\frac{1}{\sqrt{n-1}}-\frac{1}{\sqrt{n}}}+\abs{\frac{1}{n-1}-\frac{1}{\sqrt{n}}\frac{1}{\sqrt{n-1}}}+\abs{\frac{1}{\sqrt{n}(n-1)}} \\
+&\leq \sum\limits_{n=2}^N \abs{\frac{1}{\sqrt{n-1}}-\frac{1}{\sqrt{n}}}+\abs{\frac{1}{n-1}-\frac{1}{n}}+\abs{\frac{1}{\sqrt{n-1}^3}}
+\end{split}
+\end{equation*}
+and it converges as $N\rightarrow \infty$ since $\sum\limits_{i=1}^\infty \frac{1}{i^{3/2}}$ converges. Therefore, $\prod\limits_{i=2}^N u_n$ converges.
+
+\item[4.] I'll prove the proposition.
+\begin{proposition}
+Let $U$ be an open set in $\mathbb{C}$. Suppose that $f_j$ defined on $U$ are holomorphic and $\sum\limits_{j=1}^\infty \abs{f_j}$ converges uniformly on any compact sets in $U$. Then,
+\begin{equation*}
+\Phi_n(z)=\prod_{j=1}^n (1+f_j(z))
+\end{equation*}
+converges uniformly to $\Phi(z)=\prod_{i=1}^\infty (1+f_j(z))$ on compact sets and the limit is holomorphic.
+\end{proposition}
+\begin{proof}
+Fix a compact set $K\subset U$. Since $\sum\limits_{j=1}^\infty \abs{f_j}$ converges uniformly on $K$ and $\abs{f_j}$ are continuous function on the compact set, there exists $C>0$ such that $\sum\limits_{j=1}^\infty \abs{f_j}$ is uniformly bounded about $C$ and it means $\prod\limits_{j=1}^\infty (1+\abs{f_j})$ is uniformly bounded about $e^C$.
+
+For any $\epsilon>0$, there exists $N_0$ such that for any $N_2>N_1>N_0$, 
+\begin{equation*}
+\sum\limits_{j=N_1}^{N_2} \abs{f_j}\leq \epsilon
+\end{equation*}
+since it is uniformly converging sequence, and it implies
+\begin{equation*}
+\abs{\Phi_{N_2}-\Phi_{N_1}}\leq \abs{\Phi_{N_1}}\abs{\prod_{j=N_1+1}^{N_2}(1+f_j(z))-1}\leq \prod_{j=1}^{N_1} (1+\abs{f_j})\left(\exp\left(\sum\limits_{j=N_1}^{N_2} \abs{f_j}\right)-1\right)\leq e^C(e^\epsilon-1)
+\end{equation*}
+Therefore, $\Phi_n$ is uniformly cauchy in $\mathbb{C}$ and uniformly converges to $\Phi$.
+
+Finally, by the uniform boundedness of $\sum\limits_{j=1}^\infty \abs{f_j}$, the infinite product in $\Phi$ is well-defined. Also, $\Phi$ is defined on open set $U$ and is holomorphic since it is uniform limit of holomorphic functions.
+\end{proof}
+
+Using the proposition, we can easily prove the problem. Since $\Phi_n\rightarrow \Phi(z)$ uniformly on a compact set $C$, we know that $\Phi_n'\rightarrow \Phi'$ uniformly on the set, and 
+\begin{equation*}
+\Phi'_n(z)=\sum\limits_{k=1}^n f'_k\prod\limits_{j\neq k}^n (1+f_j)
+\end{equation*}
+Therefore,
+\begin{equation*}
+\Phi'(z)=\lim\limits_{n\rightarrow \infty}\Phi'_n(z)=\sum\limits_{k=1}^\infty f'_k\prod\limits_{j\neq k}^\infty (1+f_j)
+\end{equation*}
+\end{enumerate}
+
+\end{document}
