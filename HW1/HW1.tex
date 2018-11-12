@@ -91,15 +91,15 @@ For odd $N$,
 \begin{split}
 1+\sum\limits_{i=1}^N a_i&=\left(\frac{1}{\sqrt{2}}+\frac{1}{2}\right)-\frac{1}{\sqrt{3}}+\cdots +\left(\frac{1}{\sqrt{N-1}}+\frac{1}{N-1}\right)-\frac{1}{\sqrt{N}} \\
 &\geq \left(\frac{1}{\sqrt{3}}+\frac{1}{2}\right)-\frac{1}{\sqrt{3}}+\cdots +\left(\frac{1}{\sqrt{N}}+\frac{1}{N-1}\right)-\frac{1}{\sqrt{N}} \\
-&=\sum\limits_{i=1}^{(N-1)/2} \frac{1}{2N}
+&=\sum\limits_{i=1}^{(N-1)/2} \frac{1}{2i}
 \end{split}
 \end{equation*}
 and RHS goes to infinity as $N\rightarrow \infty$. Therefore, $\sum\limits_n a_n$ diverges.
 
-Let $u_n=1+a_n$. Computing $\sum\limits_{i=2}^N u_n$ for odd $N$,
+Let $u_n=1+a_n$. Computing $\sum\limits_{i=2}^N u_i$ for odd $N$,
 \begin{equation*}
 \begin{split}
-\prod\limits_{i=2}^N u_n&=\left(1+\frac{1}{\sqrt{2}}+\frac{1}{2}\right)\left(1-\frac{1}{\sqrt{3}}\right)\cdots\left(1+\frac{1}{\sqrt{N-1}}+\frac{1}{N-1}\right)\left(1-\frac{1}{\sqrt{N}}\right) \\
+\prod\limits_{i=2}^N u_i&=\left(1+\frac{1}{\sqrt{2}}+\frac{1}{2}\right)\left(1-\frac{1}{\sqrt{3}}\right)\cdots\left(1+\frac{1}{\sqrt{N-1}}+\frac{1}{N-1}\right)\left(1-\frac{1}{\sqrt{N}}\right) \\
 &=\left(1+\frac{1}{\sqrt{2}}-\frac{1}{\sqrt{3}}+\frac{1}{2}-\frac{1}{\sqrt{3}}\left(\frac{1}{\sqrt{2}}+\frac{1}{2}\right)\right)\cdots \left(1+\frac{1}{\sqrt{N-1}}-\frac{1}{\sqrt{N}}+\frac{1}{N-1}-\frac{1}{\sqrt{N}}\left(\frac{1}{\sqrt{N-1}}+\frac{1}{N-1}\right)\right)\\
 &=\prod_{i=1}^{(N-1)/2}\left(1+\frac{1}{2i}-\frac{1}{2i+1}+\frac{1}{2i}-\frac{1}{\sqrt{2i+1}}\left(\frac{1}{\sqrt{2i}}+\frac{1}{2i}\right)\right)
 .
@@ -113,15 +113,19 @@ Also,
 &\leq \sum\limits_{n=2}^N \abs{\frac{1}{\sqrt{n-1}}-\frac{1}{\sqrt{n}}}+\abs{\frac{1}{n-1}-\frac{1}{n}}+\abs{\frac{1}{\sqrt{n-1}^3}}
 \end{split}
 \end{equation*}
-and it converges as $N\rightarrow \infty$ since $\sum\limits_{i=1}^\infty \frac{1}{i^{3/2}}$ converges. Therefore, $\prod\limits_{i=2}^N u_n$ converges.
+and it converges as $N\rightarrow \infty$ since $\sum\limits_{i=1}^\infty \frac{1}{i^{3/2}}$ converges. For even $N$, it also converges to the same value since 
+\begin{equation*}
+\prod_{i=1}^N u_i=\left(\prod_{i=1}^{N-1} u_i\right)\left(1+\frac{1}{\sqrt{N}}+\frac{1}{N}\right)\rightarrow \left(\prod_{i=1}^{\infty} u_i\right)\cdot 1
+\end{equation*}
+as $N\rightarrow \infty$. Therefore, $\prod\limits_{i=2}^N u_n$ converges.
 
-\item[4.] I'll prove the proposition.
+\item[4.] I'll prove a proposition.
 \begin{proposition}
 Let $U$ be an open set in $\mathbb{C}$. Suppose that $f_j$ defined on $U$ are holomorphic and $\sum\limits_{j=1}^\infty \abs{f_j}$ converges uniformly on any compact sets in $U$. Then,
 \begin{equation*}
 \Phi_n(z)=\prod_{j=1}^n (1+f_j(z))
 \end{equation*}
-converges uniformly to $\Phi(z)=\prod_{i=1}^\infty (1+f_j(z))$ on compact sets and the limit is holomorphic.
+converges uniformly to $\Phi(z)=\prod_{i=1}^\infty (1+f_j(z))$ on compact sets and the limit is holomorphic on $U$.
 \end{proposition}
 \begin{proof}
 Fix a compact set $K\subset U$. Since $\sum\limits_{j=1}^\infty \abs{f_j}$ converges uniformly on $K$ and $\abs{f_j}$ are continuous function on the compact set, there exists $C>0$ such that $\sum\limits_{j=1}^\infty \abs{f_j}$ is uniformly bounded about $C$ and it means $\prod\limits_{j=1}^\infty (1+\abs{f_j})$ is uniformly bounded about $e^C$.
@@ -134,9 +138,9 @@ since it is uniformly converging sequence, and it implies
 \begin{equation*}
 \abs{\Phi_{N_2}-\Phi_{N_1}}\leq \abs{\Phi_{N_1}}\abs{\prod_{j=N_1+1}^{N_2}(1+f_j(z))-1}\leq \prod_{j=1}^{N_1} (1+\abs{f_j})\left(\exp\left(\sum\limits_{j=N_1}^{N_2} \abs{f_j}\right)-1\right)\leq e^C(e^\epsilon-1)
 \end{equation*}
-Therefore, $\Phi_n$ is uniformly cauchy in $\mathbb{C}$ and uniformly converges to $\Phi$.
+Therefore, $\Phi_n$ is uniformly cauchy and uniformly converges to $\Phi$ on $K$.
 
-Finally, by the uniform boundedness of $\sum\limits_{j=1}^\infty \abs{f_j}$, the infinite product in $\Phi$ is well-defined. Also, $\Phi$ is defined on open set $U$ and is holomorphic since it is uniform limit of holomorphic functions.
+Finally, by the uniform boundedness of $\sum\limits_{j=1}^\infty \abs{f_j}$, the infinite product in $\Phi$ is well-defined. Also, $\Phi$ is defined on open set $U$ and is holomorphic since it is uniform limit of holomorphic functions on compact sets.
 \end{proof}
 
 Using the proposition, we can easily prove the problem. Since $\Phi_n\rightarrow \Phi(z)$ uniformly on a compact set $C$, we know that $\Phi_n'\rightarrow \Phi'$ uniformly on the set, and 
