@@ -50,7 +50,130 @@
 
 \maketitle
 \begin{enumerate}
-\item[1.] 
+\item[1.] Define
+\begin{equation*}
+F(s)=\int_0^\infty t^{s-1}e^{-t} dt
+\end{equation*}
+defined for $\text{Re }s>0$. Prove that
+\begin{equation*}
+\frac{F(s+n+1)}{n!n^s}\rightarrow 1
+\end{equation*}
+for $0< s\leq 1$ as $n\rightarrow \infty$.
+\begin{proof}
+Since $0<s\leq 1$, $t^s\leq n^s$ and $t^{s-1}\geq n^{s-1}$ iff $0\leq t\leq n$. Therefore,
+\begin{equation*}
+n^{s-1}\int_0^n t^{n+1} e^{-t} dt+n^{s}\int_n^\infty t^n e^{-t}dt \leq F(s+n+1)\leq n^s\int_0^n t^n e^{-t} dt+n^{s-1}\int_n^\infty t^{n+1} e^{-t}dt .
+\end{equation*}
+By integration by parts,
+\begin{equation*}
+\begin{split}
+n^{s-1}\int_0^n t^{n+1} e^{-t} dt+n^{s}\int_n^\infty t^n e^{-t}dt &= n^{s-1}(n+1)\int_0^n t^{n} e^{-t} dt-e^{-n} n^{n+s}+n^{s}\int_n^\infty t^n e^{-t}dt \\
+n^s\int_0^n t^n e^{-t} dt+n^{s-1}\int_n^\infty t^{n+1} e^{-t}dt &= n^s\int_0^n t^n e^{-t} dt+n^{s-1}(n+1)\int_n^\infty t^{n} e^{-t}dt + n^{n+s}e^{-n}.
+\end{split}
+\end{equation*}
+Therefore,
+\begin{equation*}
+n^{s-1}\int_0^n t^{n} e^{-t} dt+n^{s}\int_0^\infty t^n e^{-t}dt -n^{n+s}e^{-n}\leq F(s+n+1)\leq n^s\int_0^\infty t^n e^{-t} dt+n^{s-1}\int_n^\infty t^{n} e^{-t}dt+n^{n+s}e^{-n}.
+\end{equation*}
+Since $\int_0^n t^ne^{-t}\leq n!$ and $\int_n^\infty t^ne^{-t}dt\leq n!$, as $n\rightarrow \infty$,
+\begin{equation*}
+1-\frac{n^{n}e^{-n}}{n!}\leq \frac{F(s+n+1)}{n^sn!}\leq 1+\frac{n^{n}e^{-n}}{n!}.
+\end{equation*}
+Using Taylor series of $e^n$,
+\begin{equation*}
+\frac{e^n n!}{n^n}\geq \frac{n!}{n^n}\left(\sum\limits_{i=n}^{2n} \frac{1}{i!}i^i\right)\geq \left(1+\frac{1}{2}+\cdots+\frac{1}{n}\right)
+\end{equation*}
+for large enough $n$, and it means that $\frac{e^{-n}n^n}{n!}\rightarrow 0$ as $n\rightarrow \infty$. Therefore,
+\begin{equation*}
+\frac{F(s+n+1)}{n^sn!}\rightarrow 1
+\end{equation*}
+as $n\rightarrow \infty$. The above inequality is established by
+\begin{equation*}
+\frac{(n+k)!}{n!}\leq (\sqrt[k]{k}n)^k=kn^k
+\end{equation*}
+for large enough $n$ and $n\leq k\leq 2n$.
+\end{proof}
+
+\item[2.] Show that
+\begin{equation*}
+\abs{\Gamma\left(\frac{1}{2}+it\right)}=\sqrt{\frac{2\pi}{e^t+e^{-t}}}
+\end{equation*}
+\begin{proof}
+Since
+\begin{equation*}
+\Gamma(s)\Gamma(1-s)=\frac{\pi}{\sin\pi s}
+\end{equation*}
+for all $s$,
+\begin{equation*}
+\Gamma\left(\frac{1}{2}+it\right)\Gamma\left(\frac{1}{2}-it\right)=\frac{\pi}{\sin\left(\pi(\frac{1}{2}+it)\right)}=\frac{2\pi}{e^{\pi t}+e^{-\pi t}}
+\end{equation*}
+for all $t\in \rr$. As the real part is positive,
+\begin{equation*}
+\overline{\Gamma\left(\frac{1}{2}+it\right)}=\overline{\int_0^\infty e^{-u}u^{-\frac{1}{2}+it}du}=\int_0^\infty e^{-u}u^{-\frac{1}{2}-it}du=\Gamma\left(\frac{1}{2}-it\right).
+\end{equation*}
+Therefore,
+\begin{equation*}
+\abs{\Gamma\left(\frac{1}{2}+it\right)}=\sqrt{\frac{2\pi}{e^t+e^{-t}}}
+\end{equation*}
+\end{proof}
+
+\item[3.] Calculate $\int_0^\infty t^{s-1}\cos t dt $ and $\int_0^\infty t^{s-1}\sin t dt$ for $0<\text{Re } s<1$.
+\begin{proof}
+Take a contour as Fig. \ref{Fig:P3}, then the contour integral for $z^{s-1}e^{-z}$ is
+\begin{equation*}
+\int_\epsilon^R t^{s-1}e^{-t} dt+\int_{C_R}z^{s-1}e^{-z} dz+\int_R^\epsilon (it)^{s-1} e^{-it} i~dt+\int_{C_\epsilon}z^{s-1}e^{-z} dz=0
+\end{equation*}
+since there is no pole in the interior of the contour. As $\epsilon\rightarrow 0$,
+\begin{equation*}
+\abs{\int_{C_\epsilon}z^{s-1}e^{-z} dz}\leq \epsilon^{s-1}\epsilon\frac{\pi}{2}=\epsilon^s \frac{\pi}{2}\rightarrow 0
+\end{equation*}
+As $R\rightarrow \infty$,
+\begin{equation*}
+\abs{\int_{C_R}z^{s-1}e^{-z} dz}\leq R^s \int_0^{\frac{\pi}{2}} e^{-R\cos\theta}d\theta\leq R^s \int_0^{\frac{\pi}{2}} e^{R(\theta-\pi/2)}d\theta\leq R^{s-1}\rightarrow 0.
+\end{equation*}
+The inequality is established by $\cos\theta\geq\pi/2-\theta$ for $0\leq\theta\leq\pi/2$.
+Therefore,
+\begin{equation*}
+\int_0^\infty t^{s-1}e^{-t}dt=i^s\int_0^\infty t^{s-1}e^{-it}dt 
+\end{equation*}
+and $i^{-s}\Gamma(s)=\int_0^\infty t^{s-1}e^{-it}dt$.
+
+Hence,
+\begin{equation*}
+\begin{split}
+\text{Re}\int_0^\infty t^{s-1}e^{-it}~dt&=\int_0^\infty t^{s-1}\cos t~dt=\text{Re } e^{-\pi i s/2}\Gamma(s)=\cos(\pi s/2) \Gamma(s) \\
+\text{Im}\int_0^\infty t^{s-1}e^{-it}~dt&=-\int_0^\infty t^{s-1}\sin t~dt=-\text{Im } e^{-\pi i s/2}\Gamma(s)=\sin(\pi s/2)\Gamma(s)
+\end{split}
+\end{equation*}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[decoration={markings,
+mark=at position 1cm with {\arrow[line width=1pt]{>}},
+mark=at position 3.5cm with {\arrow[line width=1pt]{>}},
+mark=at position 6.1cm with {\arrow[line width=1pt]{>}}
+}
+]
+% The axes
+\draw[help lines,->] (-3,0) -- (3,0) coordinate (xaxis);
+\draw[help lines,->] (0,-1) -- (0,3) coordinate (yaxis);
+
+% The path
+\path[draw,line width=0.8pt,postaction=decorate] (0.4,0) -- (2,0) node[below] {$R$} arc (0:90:2) -- (0,0.4);
+
+\path[draw,line width=0.8pt,postaction=decorate] (0.4,0) node[below] {$\epsilon$} arc (0:90:0.4);
+
+% The labels
+\node[below] at (xaxis) {$x$};
+\node[left] at (yaxis) {$y$};
+\node[below left] {$O$};
+\node at (1.5,1.8) {$C_{R}$};
+\node at (0.5,0.45) {$C_{\epsilon}$};
+\end{tikzpicture}
+\caption{The contour used in problem 3.}
+\label{Fig:P3}
+\end{figure}
+
+\end{proof}
 \end{enumerate}
 
 \end{document}
