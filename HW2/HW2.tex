@@ -60,7 +60,7 @@ defined for $\text{Re }s>0$. Prove that
 \end{equation*}
 for $0< s\leq 1$ as $n\rightarrow \infty$.
 \begin{proof}
-Since $0<s\leq 1$, $t^s\leq n^s$ and $t^{s-1}\geq n^{s-1}$ iff $0\leq t\leq n$. Therefore,
+Since $0<s\leq 1$, $t^s\leq n^s$ and $t^{s-1}\geq n^{s-1}$ fpr $0\leq t\leq n$. For $t>n$, the relations are reversed. Therefore,
 \begin{equation*}
 n^{s-1}\int_0^n t^{n+1} e^{-t} dt+n^{s}\int_n^\infty t^n e^{-t}dt \leq F(s+n+1)\leq n^s\int_0^n t^n e^{-t} dt+n^{s-1}\int_n^\infty t^{n+1} e^{-t}dt .
 \end{equation*}
@@ -96,7 +96,7 @@ for large enough $n$ and $n\leq k\leq 2n$.
 
 \item[2.] Show that
 \begin{equation*}
-\abs{\Gamma\left(\frac{1}{2}+it\right)}=\sqrt{\frac{2\pi}{e^t+e^{-t}}}
+\abs{\Gamma\left(\frac{1}{2}+it\right)}=\sqrt{\frac{2\pi}{e^{\pi t}+e^{-\pi t}}}
 \end{equation*}
 \begin{proof}
 Since
@@ -107,17 +107,17 @@ for all $s$,
 \begin{equation*}
 \Gamma\left(\frac{1}{2}+it\right)\Gamma\left(\frac{1}{2}-it\right)=\frac{\pi}{\sin\left(\pi(\frac{1}{2}+it)\right)}=\frac{2\pi}{e^{\pi t}+e^{-\pi t}}
 \end{equation*}
-for all $t\in \rr$. As the real part is positive,
+for all $t\in \rr$. As the real part of $s$ is positive,
 \begin{equation*}
 \overline{\Gamma\left(\frac{1}{2}+it\right)}=\overline{\int_0^\infty e^{-u}u^{-\frac{1}{2}+it}du}=\int_0^\infty e^{-u}u^{-\frac{1}{2}-it}du=\Gamma\left(\frac{1}{2}-it\right).
 \end{equation*}
 Therefore,
 \begin{equation*}
-\abs{\Gamma\left(\frac{1}{2}+it\right)}=\sqrt{\frac{2\pi}{e^t+e^{-t}}}
+\abs{\Gamma\left(\frac{1}{2}+it\right)}=\sqrt{\frac{2\pi}{e^{\pi t}+e^{-\pi t}}}
 \end{equation*}
 \end{proof}
 
-\item[3.] Calculate $\int_0^\infty t^{s-1}\cos t dt $ and $\int_0^\infty t^{s-1}\sin t dt$ for $0<\text{Re } s<1$.
+\item[3.] Calculate $\int_0^\infty t^{s-1}\cos t~dt $ and $\int_0^\infty t^{s-1}\sin t~dt$ for $0<\text{Re } s<1$.
 \begin{proof}
 Take a contour as Fig. \ref{Fig:P3}, then the contour integral for $z^{s-1}e^{-z}$ is
 \begin{equation*}
@@ -164,7 +164,7 @@ mark=at position 6.1cm with {\arrow[line width=1pt]{>}}
 
 % The labels
 \node[below] at (xaxis) {$x$};
-\node[left] at (yaxis) {$y$};
+\node[left] at (yaxis) {$iy$};
 \node[below left] {$O$};
 \node at (1.5,1.8) {$C_{R}$};
 \node at (0.5,0.45) {$C_{\epsilon}$};
