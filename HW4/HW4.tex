@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{graphicx, amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{kotex}
+\usepackage{bm}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\textwidth 6.5 truein 
+\oddsidemargin 0 truein 
+\evensidemargin -0.50 truein 
+\topmargin -.5 truein 
+\textheight 8.5in
+
+\DeclareMathOperator{\cc}{\mathbb{C}}
+\DeclareMathOperator{\rr}{\mathbb{R}}
+\DeclareMathOperator{\bA}{\mathbb{A}}
+\DeclareMathOperator{\fra}{\mathfrak{a}}
+\DeclareMathOperator{\frb}{\mathfrak{b}}
+\DeclareMathOperator{\frm}{\mathfrak{m}}
+\DeclareMathOperator{\frp}{\mathfrak{p}}
+\DeclareMathOperator{\slin}{\mathfrak{sl}}
+\DeclareMathOperator{\Lie}{\mathsf{Lie}}
+\DeclareMathOperator{\Alg}{\mathsf{Alg}}
+\DeclareMathOperator{\Spec}{\mathrm{Spec}}
+\DeclareMathOperator{\End}{\mathrm{End}}
+\DeclareMathOperator{\rad}{\mathrm{rad}}
+\newcommand*\Laplace{\mathop{}\!\mathbin\bigtriangleup}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Sch}{\mathbf{Sch}}
+\newcommand{\Ring}{\mathbf{Ring}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+\title{Complex Analysis - HW3}
+\author{SungBin Park, 20150462} 
+
+\maketitle
+\begin{enumerate}
+\item[1.] If $f$ is holomorphic on the disk $D(0, R)$, $\abs{f}\leq M$ on the disc, and $f(z_0)=w_0$, then $f$ satisfies
+\begin{equation*}
+\begin{cases}
+\abs{\frac{M(f(z)-w_0)}{M^2-\bar{w}_0 f(z)}}\leq \abs{\frac{z-z_0}{1-\bar{z}_0 z}} \\
+\abs{f'(z)}\leq \frac{1-\abs{w_0}^2}{1-z_0^2}
+\end{cases}
+\end{equation*}
+\begin{proof}
+In the class, we showed that
+\begin{equation*}
+\phi_a(z)=\frac{z-a}{1-\bar{a}z}
+\end{equation*}
+is automorphism between unit open disc. For open disc $D(0, R)$, we can set the automorphism:
+\begin{equation*}
+\phi_a(z)=R\frac{z/R-a/R}{1-\bar{a}z/R^2}=\frac{z-a}{1-\bar{a}z/R^2}
+\end{equation*}
+...
+Let's construct $g$ as
+\begin{equation*}
+g(z)=\frac{1}{R}\left(\phi_{\frac{R}{M}w_0}\circ \left(\frac{R}{M}f\right)\circ \phi_{-z_0}\right)
+\end{equation*}
+For $z\in D(0, R)$, $\abs{\frac{R}{M}f}\leq R$ and $\abs{g(z)}\leq 1$. Also, $g(0)=0$. Therefore, using Schwarz lemma, we can know that
+\begin{equation*}
+\begin{cases}
+\abs{g(z)}\leq \abs{z} \\
+\abs{g'(0)}\leq 1.
+\end{cases}
+\end{equation*}
+Therefore,
+\begin{equation*}
+\begin{split}
+&\abs{\phi_{\frac{R}{M}w_0}\circ \left(\frac{R}{M}f\right)\circ \phi_{-z_0}}\leq R\abs{z} \\
+&\Rightarrow \abs{\phi_{\frac{R}{M}w_0}\circ \left(\frac{R}{M}f\right)}\leq R\abs{\phi_{z_0}(z)} \\
+&\Rightarrow \abs{\frac{\frac{R}{M}f-\frac{R}{M}w_0}{1-\frac{R}{M}\bar{w}_0\frac{R}{M}f/R^2}}\leq \abs{R\frac{z-z_0}{1-\bar{z}_0z/R^2}}\\
+&\Rightarrow \abs{\frac{M(f-w_0)}{M^2-\bar{w}_0f}}\leq \abs{\frac{z-z_0}{R^2-\bar{z}_0z}}
+\end{split}
+\end{equation*} 
+Therefore,
+\begin{equation*}
+\abs{\frac{M(f(z)-w_0)}{M^2-\bar{w}_0f(z)}}\leq \abs{\frac{z-z_0}{R^2-\bar{z}_0 z}}
+\end{equation*}
+\end{proof}
+\item[2.] Describe all the automorphisms on upper half plane.
+\begin{proof}
+I'll figure out the mappings between upper half plane and open unit disc.
+\end{proof}
+\end{enumerate}
+\end{document}
