@@ -45,114 +45,30 @@
 \newtheorem{proposition}{Proposition}
 
 \begin{document}
-\title{Complex Analysis - HW4}
+\title{Complex Analysis - HW5}
 \author{SungBin Park, 20150462} 
 
 \maketitle
 \begin{enumerate}
-\item[1.] If $f$ is holomorphic on the disk $D(0, R)$, $\abs{f}\leq M$ on the disc, and $f(z_0)=w_0$, then $f$ satisfies
+\item[1.] Let $f$ be a holomorphic function on $R_1<\abs{z}<R_2$ and continuous on $R_1\leq \abs{z}\leq R_2$. Let $M(r)=\max\limits_{\abs{z}=r}\abs{f(z)}$. Then,
 \begin{equation*}
-\abs{\frac{M(f(z)-w_0)}{M^2-\bar{w}_0 f(z)}}\leq \abs{\frac{R(z-z_0)}{R^2-\bar{z}_0 z}}
+M(r)\leq M(R_1)^{\alpha}M(R_2)^{1-\alpha},~~\alpha=\log(R_2/r)/\log(R_2/R_1)
 \end{equation*}
 \begin{proof}
-In the class, we showed that
-\begin{equation*}
-\phi_a(z)=\frac{z-a}{1-\bar{a}z}
-\end{equation*}
-is automorphism between unit open disc.
-Let's construct $g$ as
-\begin{equation*}
-g(z)=\phi_{w_0/M}\circ \left(\frac{1}{M}f\right)\circ Rz \circ \phi_{-z_0/R}
-\end{equation*}
-For $z\in D(0, 1)$, $\abs{\frac{1}{M}f}\leq 1$ and $\abs{g(z)}\leq 1$. Also, $g(0)=0$. Therefore, using Schwarz lemma, we can know that
-\begin{equation*}
-\begin{cases}
-\abs{g(z)}\leq \abs{z} \\
-\abs{g'(0)}\leq 1.
-\end{cases}
-\end{equation*}
-Therefore,
-\begin{equation*}
-\begin{split}
-&\abs{\phi_{w_0/M}\circ \left(\frac{1}{M}f\right)\circ Rz \circ \phi_{-z_0/R}}\leq R\abs{z} \\
-&\Rightarrow \abs{\phi_{w_0/M}\circ \left(\frac{1}{M}f\right)}\leq R\abs{\phi_{z_0/R}(z/R)} \\
-&\Rightarrow \abs{\frac{\frac{1}{M}f-\frac{w_0}{M}}{1-\frac{\bar{w}_0}{M}\frac{f}{M}}}\leq \abs{\frac{z/R-z_0/R}{1-\bar{z}_0z/R^2}}\\
-&\Rightarrow \abs{\frac{M(f-w_0)}{M^2-\bar{w}_0f}}\leq \abs{\frac{R(z-z_0)}{R^2-\bar{z}_0z}}
-\end{split}
-\end{equation*} 
-Therefore,
-\begin{equation*}
-\abs{\frac{M(f(z)-w_0)}{M^2-\bar{w}_0f(z)}}\leq \abs{\frac{R(z-z_0)}{R^2-\bar{z}_0 z}}
-\end{equation*}
-\end{proof}
+Consider $g(z)=z^\lambda f(z)$, $\lambda\in \rr$ and assume that this is not a constant function.(Unless, the theorem is trivial since the second paragraph directly applies to $f$.) Then, it is holomorphic on $0<R_1<\abs{z}<R_2$ except a branch cut. By Maximum modulus principle, $\abs{z^\lambda f}=\abs{z}^\lambda\abs{f}$ can not have maximum value inside the region without branch cut since $g$ is not a constant function. Since the $\abs{g}$ is independent from the setting of branch cut and continuous on the closure of the region, which is compact, $\abs{g}$ have maximum on the boundary of the region: $\abs{z}=R_1$ or $R_2$. Let each maximum values of $\abs{g}$: $R_1^\lambda M(R_1)$, $R_2^\lambda M(R_2)$.
 
-\item[2.] Describe all the automorphisms on upper half plane.(I'll denote upper half plane $\mathbb{P}$ and unit disc $\mathbb{D}$.)
-\begin{proof}
-I'll show that the automorphism of $\mathbb{P}$ is of form:
-\begin{equation*}
-f(z)=\frac{az+b}{cz+d}~~a,b,c,d\in \rr\text{ and }ad-bc=1.
-\end{equation*}
-Let $f$ is in the automorphism of $\mathbb{P}$. I'll assume that
-\begin{equation*}
-\phi(z)=\frac{z-i}{z+i}
-\end{equation*}
-is transformation from upper half plane to unit disc for now.(1) Then, $\phi\circ f(\mathbb{P})=\phi(\mathbb{P})=\mathbb{D}$ as a set-theoretic sense, and $\phi \circ f \circ \phi^{-1}$ is an automorphism of $\mathbb{D}$. We know that all the automorphism of $\mathbb{D}$ is of form:
-\begin{equation*}
-e^{i\theta}\frac{z-\alpha}{1-\bar{\alpha}z}
-\end{equation*}
-for some $\theta\in \rr$ and $\alpha\in \mathbb{D}$. I'll modify this form by
-\begin{equation*}
-\frac{pz+q}{\bar{q}z+\bar{p}}~~\text{for }p,q\in \mathbb{C}\text{ and }\abs{p}^2-\abs{q}^2=1.
-\end{equation*}
-I'll also assume this for now.(2) Then,
+We can fix $\lambda$ to satisfy $R_1^\lambda M(R_1)=R_2^\lambda M(R_2)$. Then, the $\lambda$ is $\log(M(R_2)/M(R_1))/\log(R_1/R_2)$. By Maximum modulus principle, we know that $r^\lambda M(r)\leq R_1^\lambda M(R_1)=R_2^\lambda M(R_2)$ for all $R_1\leq r\leq R_2$. Rewriting the inequality,
 \begin{equation*}
 \begin{split}
-f(z)&=\phi^{-1}\circ \left(\frac{pz+q}{\bar{q}z+\bar{p}}\right)\circ \phi \\
-&=\left(\frac{-iz-i}{z-1}\right)\circ\left(\frac{p\frac{z-i}{z+i}+q}{\bar{q}\frac{z-i}{z+i}+\bar{p}}\right) \\
-&=\left(\frac{-iz-i}{z-1}\right)\circ \left(\frac{(p+q)z+(-p+q)i}{(\bar{p}+\bar{q})z+(\bar{p}-\bar{q})i}\right) \\
-&=\frac{(p+\bar{p}+q+\bar{q})iz/\sqrt{8}-(\bar{p}-\bar{q}-p+q)/\sqrt{8}}{-(p+q-\bar{p}-\bar{q})z/\sqrt{8}-(-p-\bar{p}+q+\bar{q})i/\sqrt{8}}.
+M(r)&\leq \left(\frac{R_2}{r}\right)^\lambda M(R_2) \\
+&= \left(\frac{R_2}{r}\right)^{\log(M(R_2)/M(R_1))/\log(R_1/R_2)} M(R_2) \\
+&=\left(\frac{R_2}{r}\right)^{\log_{R_1/R_2}(M(R_2)/M(R_1))} M(R_2) \\
+&=\left(\frac{M(R_2)}{M(R_1)}\right)^{\log_{R_1/R_2}(R_2/r)} M(R_2) \\
+&=\left(\frac{M(R_2)}{M(R_1)}\right)^{-\log(R_2/r)/\log({R_2/R_1})} M(R_2) \\
+&=M(R_1)^\alpha M(R_2)^{1-\alpha}
 \end{split}
 \end{equation*}
-We know that $(z+\bar{z})i, (z-\bar{z})\in \rr$, so each coefficient in numerator and denominator are real. Let's rewrite it as
-\begin{equation*}
-\frac{az+b}{cz+d},~~a,b,c,d\in \rr
-\end{equation*}
-Also,
-\begin{equation*}
-\begin{split}
-8(ad-bc)&=(p+\bar{p}+q+\bar{q})(p+\bar{p}-q-\bar{q})-(\bar{p}-p+\bar{q}-q)(p-\bar{p}-q+\bar{q}) \\
-&=(p+\bar{p})^2-(\bar{p}-p)^2-(q+\bar{q})^2+(-q+\bar{q})^2=8(\abs{p}^2-\abs{q}^2)=8
-\end{split}
-\end{equation*}
-Conversely, let if $f$ is such form, then
-\begin{equation*}
-\text{Im}(f)=\text{Im}\left(\frac{(az+b)(c\bar{z}+d)}{\abs{cz+d}^2}\right)=\frac{(ad-bc)y}{\abs{cz+d}^2}>0
-\end{equation*}
-for $z=x+iy$ and $y>0$. Also, $f$ is linear fractional transformation, so it is conformal mapping. Since it has inverse function on $\mathbb{P}$:
-\begin{equation*}
-f^{-1}(z)=\frac{-dz+b}{cz-a}
-\end{equation*}
-which is also satisfies $-d,b,c,-a\in \rr$, $ad-bc=1$, the domain and codomain is $\mathbb{P}$ and bijective. Therefore, $f$ is in the automorphism on $\mathbb{P}$, completing the proof.
-
-(1): By geometric analysis, for any $z\in\mathbb{P}$,
-\begin{equation*}
-\frac{\abs{z-i}}{\abs{z+i}}<1
-\end{equation*}
-since the distance from $i$ is always smaller than the distance from $-i$. Also, the real axis is mapped to the boundary of unit disc since $\abs{z-i}=\abs{z+i}$. Since any linear fractional is one to one mapping of the extended $z$ plane to extended $w$ plane,(Complex Variables and Applications, James Ward Brown and Ruel V. Churchill) $\frac{z-i}{z+i}$ maps $\mathbb{P}$ to $\mathbb{D}$.
-
-(2): Let's start from 
-\begin{equation*}
-f(z)=e^{i\theta}\frac{z-\alpha}{1-\bar{\alpha}z}.
-\end{equation*}
-Let $k=1-\abs{\alpha}^2>0$ and $a=e^{i\theta/2}/\sqrt{k}$, then
-\begin{equation*}
-\begin{split}
-f(z)&=e^{i\theta}\frac{z-\alpha}{1-\bar{\alpha}z} \\
-&=\frac{(e^{i\theta/2}/\sqrt{k})z-(e^{i\theta/2}/\sqrt{k})\alpha}{-(e^{-i\theta/2}/\sqrt{k})\bar{\alpha}z+(e^{-i\theta/2}/\sqrt{k})} \\
-&=\frac{az+b}{\bar{b}+\bar{a}}
-\end{split}
-\end{equation*}
-for $a=(e^{i\theta/2}/\sqrt{k})z$, $b=-(e^{i\theta/2}/\sqrt{k})\alpha$. Also, $\abs{a}^2-\abs{b}^2=\frac{1}{k^2}-\frac{\abs{\alpha}^2}{k^2}=1$.
+for $\alpha=\log(R_2/r)/\log({R_2/R_1})$.
 \end{proof}
 \end{enumerate}
 \end{document}

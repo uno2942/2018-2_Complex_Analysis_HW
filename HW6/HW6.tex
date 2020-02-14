@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage{graphicx, amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{kotex}
+\usepackage{bm}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+
+\textwidth 6.5 truein 
+\oddsidemargin 0 truein 
+\evensidemargin -0.50 truein 
+\topmargin -.5 truein 
+\textheight 8.5in
+
+\DeclareMathOperator{\cc}{\mathbb{C}}
+\DeclareMathOperator{\rr}{\mathbb{R}}
+\DeclareMathOperator{\bA}{\mathbb{A}}
+\DeclareMathOperator{\fra}{\mathfrak{a}}
+\DeclareMathOperator{\frb}{\mathfrak{b}}
+\DeclareMathOperator{\frm}{\mathfrak{m}}
+\DeclareMathOperator{\frp}{\mathfrak{p}}
+\DeclareMathOperator{\slin}{\mathfrak{sl}}
+\DeclareMathOperator{\Lie}{\mathsf{Lie}}
+\DeclareMathOperator{\Alg}{\mathsf{Alg}}
+\DeclareMathOperator{\Spec}{\mathrm{Spec}}
+\DeclareMathOperator{\End}{\mathrm{End}}
+\DeclareMathOperator{\rad}{\mathrm{rad}}
+\newcommand*\Laplace{\mathop{}\!\mathbin\bigtriangleup}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Sch}{\mathbf{Sch}}
+\newcommand{\Ring}{\mathbf{Ring}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+\title{Complex Analysis - HW6}
+\author{SungBin Park, 20150462} 
+
+\maketitle
+\begin{enumerate}
+\item[1.] Suppose $v$ is a continuous real-valued function. Prove that $v$ is subharmonic if and only if $\Laplace v\geq 0$.
+\begin{proof}
+\begin{enumerate}
+\item[($\Leftarrow$)] Assume $v$ is subharmonic, but $\Laplace v<0$ for some point $x_0+y_0 i$. Since $v\in C^2$, $\Laplace v$ is continuous function, so there exists $R>0$ such that $\Laplace v<0$ in $D(x_0+y_0 i, r)$, which is the disc centered at $x_0+y_0 i$ with radius $r\leq R$. I'll denote the disc $D(r)$ for $r\leq R$. Let
+\begin{equation*}
+f(r)=\frac{1}{2\pi}\int_0^{2\pi} v(x_0+y_0 i+re^{i\theta})d\theta,
+\end{equation*}
+then the integral is well defined since $v$ is continuous. Since $v\in C^1$, we can interchange $\partial_r$ and $\int$, in other words,
+\begin{equation*}
+\begin{split}
+\pdv{f}{r}&=\frac{1}{2\pi}\pdv{r}\int_0^{2\pi} v(x_0+y_0 i+re^{i\theta})d\theta \\
+&=\frac{1}{2\pi}\int_0^{2\pi} {\pdv{v}{r}} (x_0+y_0 i+re^{i\theta})d\theta
+\end{split}
+\end{equation*}
+Since $v$ is real-valued function, we can regard the domain of $v$ to be a subset of $\rr^2$ and $v(x_0+y_0 i+re^{i\theta})$ as $v(x_0+r\cos\theta,y_0+r\sin\theta)$. Then, $\pdv{v}{r}=\nabla v\cdot \hat{r}$ and by stokes' theorem,
+\begin{equation*}
+\begin{split}
+\frac{1}{2\pi}\int_0^{2\pi} {\pdv{v}{r}} (x_0+y_0 i+re^{i\theta})d\theta &= \frac{1}{2\pi r}\int_{\partial D(r)} \nabla v\cdot \hat{r} dS \\
+&=\frac{1}{2\pi r} \int_{D(r)} \Laplace v dx<0
+\end{split}
+\end{equation*}
+and it means $f(r)$ is strictly decreasing function for $r\leq R$. Thus,
+\begin{equation*}
+f(x_0+y_0 i)>\frac{1}{2\pi}\int_0^{2\pi} {\pdv{v}{r}} (x_0+y_0 i+re^{i\theta})d\theta
+\end{equation*}
+for $0<r<R$ since
+\begin{equation*}
+f(x_0+y_0 i)=\lim\limits_{r\rightarrow 0}\frac{1}{2\pi}\int_0^{2\pi} {\pdv{v}{r}} (x_0+y_0 i+re^{i\theta})d\theta
+\end{equation*}
+by the Lebesgue differentiation theorem. It is contradiction. Therefore, $\Laplace v\geq 0$.
+\item[($\Rightarrow$)] Let $\Omega$ be a region such that $v$ is defined on. Assume $\Laplace v\geq 0$, then for any $\epsilon>0$, $\Laplace (v+\epsilon x^2)=\Laplace v+2\epsilon>0$. It implies that $v+\epsilon x^2$ can not have local maximum since ${\frac{\partial^2}{\partial x^2}}(v+\epsilon x^2)$ or ${\frac{\partial^2}{\partial y^2}}(v+\epsilon x^2)$ is positive. For any harmonic function $u$ which is defined on $\Omega'\subset \Omega$, then $\Laplace(v+\epsilon x^2-u)=\Laplace(v+\epsilon x^2)-\Laplace u>0$, so it satisfies maximum principle in $\Omega'$ and it means $v+\epsilon x^2$ is subharmonic function on $\Omega$. Since $v$ is limit of subharmonic functions by letting $\epsilon\rightarrow 0$, $v$ is subharmonic.(1)
+
+(1): Suppose $v$ is not subharmonic, so there exists a harmonic function $u$ such that $v-u$ has a local maximum inside the region $\Omega'$, which is the domain of $u$. Let the point $p$. Take an small enough open disc $D$ centered at the local maximum with radius $r>0$. Since $p$ is local maximum, $0<\delta=(v-u)(p)-\max\limits_{z\in \partial D} (v-u)(z)$, and take $\epsilon=\frac{\delta}{8(\norm{p}^2+r^2)}$, where $\norm{p}$ is the distance between $p$ and $0$ in $\mathbb{C}$. Then, $0<(v+\epsilon x^2-u)(p)-\max\limits_{z\in \partial D} (v+\epsilon x^2-u)(z)$ since $\epsilon$ is small enough, and there still exists local maximum of $(v+\epsilon x^2-u)$ in $D$, which is contradiction since $(v+\epsilon x^2-u)$ does not have local maximum in the $\Omega'$. Therefore, $v$ is subharmonic.
+\end{enumerate}
+\end{proof}
+\item[2.] Show that the solution of the Dirichlet problem for upper half plane, i.e.
+\begin{equation*}
+\begin{cases}
+\Laplace u\equiv 0 & \text{in }\mathbb{H}^+ \\
+u=f & \text{on }\partial \mathbb{H}^+
+\end{cases}
+\end{equation*}
+is
+\begin{equation*}
+u(x+iy)=\frac{1}{\pi}\int_{-\infty}^\infty \frac{y}{(t-x)^2+y^2}f(t)dt
+\end{equation*}
+\begin{proof}
+In the class, we showed that the solution for Dirichlet problem for unit disc $D$, i.e.
+\begin{equation*}
+\begin{cases}
+\Laplace v\equiv 0 & \text{in } D \\
+v=g & \text{on }\partial D
+\end{cases}
+\end{equation*}
+is
+\begin{equation*}
+v(z)=\frac{1}{2\pi}\int_0^{2\pi}\frac{1-\abs{z}^2}{\abs{e^{i\theta}-z}^2}g(e^{i\theta})d\theta.
+\end{equation*}
+For after, I'll set $g(e^{i\theta})=f(-\cot(\theta/2))$, which is defined on $\partial D$ a.e. and this will be clear as the proof goes on. Using this solution, I'll find the solution for original problem.
+
+In the previous HW, I showed that 
+\begin{equation*}
+h(z)=\frac{z-i}{z+i}
+\end{equation*}
+is a conformal transform from $\mathbb{H}^+$ to $D$ and $\partial \mathbb{H}^+$ to $D$ without $z=1$. Since $v$ is harmonic on $D$, $v\circ h$ is harmonic on $\mathbb{H}^+$. I'll denote $u=v\circ h$ and show that $u=f$ on $\partial \mathbb{H}^+$.(1) Evaluating $u(z)$,
+\begin{equation*}
+\begin{split}
+u(z)=v(h(z))&=v\left(\frac{z-i}{z+i}\right) \\
+&=\frac{1}{2\pi}\int_0^{2\pi}\frac{1-\abs{\frac{z-i}{z+i}}^2}{\abs{e^{i\theta}-\frac{z-i}{z+i}}^2}g(e^{i\theta})d\theta \\
+&=\frac{1}{2\pi}\int_0^{2\pi}\frac{\abs{z+i}^2-\abs{z-i}^2}{\abs{(z+i)e^{i\theta}-(z-i)}^2}g(e^{i\theta})d\theta.
+\end{split}
+\end{equation*}
+By $h$, $e^{i\theta}$ maps to $-\cot\left(\theta/2\right)$, and this is why I set $g=f\circ h^{-1}$ on $\partial D$ by setting $g(e^{i\theta})=f(-\cot(\theta/2))$.(If we consider the value at boundary, $\lim\limits_{z\rightarrow -\cot(\theta_0/2)} u(z)=\lim\limits_{z\rightarrow -\cot(\theta_0/2)} v\circ h(z)=\lim\limits_{t\rightarrow e^{i\theta_0}} v(t)=g(e^{i\theta_0})=f(-\cot(\theta/2))$, where $0<\theta_0<2\pi$, since $h$ is conformal mapping.)
+
+\begin{equation*}
+\begin{split}
+\frac{1}{2\pi}\int_0^{2\pi}\frac{\abs{z+i}^2-\abs{z-i}^2}{\abs{(z+i)e^{i\theta}-(z-i)}^2}g(e^{i\theta})d\theta &= \frac{1}{2\pi}\int_0^{2\pi}\frac{\abs{z+i}^2-\abs{z-i}^2}{\abs{(z+i)e^{i\theta}-(z-i)}^2}f\left(-\cot\left(\theta/2\right)\right)d\theta
+\end{split}
+\end{equation*}
+Let $t=-\cot(\theta/2)$, then $e^{i\theta}=\frac{t-i}{t+i}$ and $dt=\frac{1}{2}(\cot^2(\theta/2)+1)d\theta$.
+\begin{equation*}
+\begin{split}
+\frac{1}{2\pi}\int_0^{2\pi}\frac{\abs{z+i}^2-\abs{z-i}^2}{\abs{(z+i)e^{i\theta}-(z-i)}^2}f\left(\cot\left(\theta/2\right)\right)d\theta &= \frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{\abs{z+i}^2-\abs{z-i}^2}{\abs{(z+i)\frac{t-i}{t+i}-(z-i)}^2}f(t)\left(\frac{2}{t^2+1}\right)dt.
+\end{split}
+\end{equation*}
+Denoting $z=x+iy$,
+\begin{equation*}
+\begin{split}
+u(x+iy)&=\frac{1}{2\pi}\int_{-\infty}^{\infty}\abs{t+i}^2\frac{\abs{x+(y+1)i}^2-\abs{x+(y-1)i}^2}{\abs{(x+(y+1)i)(t-i)-(x+(y-1)i)(t+i)}^2}f(t)\left(\frac{2}{t^2+1}\right)dt \\
+&=\frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{4y}{4(t-x)^2+4y^2}f(t)2dt \\
+&=\frac{1}{\pi}\int_{-\infty}^\infty \frac{y}{(t-x)^2+y^2}f(t)dt.
+\end{split}
+\end{equation*}
+Therefore, it is a solution of the Dirichlet problem for upper half plane.
+
+I need to show that this is the unique solution. Assume there is two solutions $u_1$ and $u_2$, then $u_1-u_2$ is a solution for 
+\begin{equation*}
+\begin{cases}
+\Laplace u\equiv 0 & \text{in }\mathbb{H}^+ \\
+u=0 & \text{on }\partial \mathbb{H}^+
+\end{cases}
+\end{equation*}
+By strong maximum principle for harmonic function, $u_1-u_2\equiv 0$ in $\mathbb{H}^+$ and it means $u_1=u_2$. It proves the uniqueness of the solution for Dirichlet problem for upper half plane.
+
+(1): Let $u:U\rightarrow \rr$ is harmonic and $h:V\rightarrow U$ is holomorphic, then there exists harmonic conjugate $u+iv$ which is holomorphic on $U$, and $(u+iv)\circ h$ is holomorphic on $V$. Therefore, $\text{Re}(u+iv)\circ h=u\circ h$ is harmonic.
+\end{proof}
+\end{enumerate}
+\end{document}
